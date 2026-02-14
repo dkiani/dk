@@ -16,24 +16,25 @@
       position: relative;
     }
     .name {
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
       font-family: 'Courier New', monospace;
       font-size: 0.75rem;
       color: #374151;
       letter-spacing: 0.05em;
       line-height: 1.6;
+      margin-bottom: 2rem;
     }
     .grid-container {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-25%, -50%);
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
     .icon-grid {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(2, auto);
       gap: 1.5rem 2rem;
     }
     .icon-item {
@@ -56,11 +57,6 @@
       font-size: 0.75rem;
       color: #6b7280;
       margin-top: 0.5rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .icon-item:hover .icon-number {
-      opacity: 1;
     }
     .footer {
       position: absolute;
@@ -72,7 +68,7 @@
       line-height: 1.6;
     }
     @media (min-width: 768px) {
-      .name { top: 3rem; left: 3rem; font-size: 0.875rem; }
+      .name { font-size: 0.875rem; }
       .icon-grid { gap: 2rem 2.5rem; }
       .icon-item img { width: 10rem; height: 10rem; }
       .footer { bottom: 3rem; left: 3rem; font-size: 0.875rem; }
@@ -83,9 +79,8 @@
   </style>
 </head>
 <body>
-  <div class="name">DANIEL<br>KIANI</div>
-  
   <div class="grid-container">
+    <div class="name">DANIEL<br>KIANI</div>
     <div class="icon-grid">
       <a href="https://apps.apple.com" target="_blank" rel="noopener" class="icon-item">
         <img src="icons/icon01.png" alt="One Day App">
