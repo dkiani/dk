@@ -49,9 +49,9 @@ check entirely. This was done on 13 Oct 2026 and propagated the same day.
 - .ni is Nicaragua's country domain. Registration itself took four days to
   be approved by the registry (submitted 9 Oct, active 13 Oct 2026).
 
-- kia.ni was attached to the Vercel project `dk1`, which deploys the
-  kiani.vc curriculum site from its main branch. It is not attached to the
-  `dk` portfolio project. Move it between projects in Vercel if that changes.
+- kia.ni is attached to the Vercel project `dk1`, the same project that
+  serves the kiani.vc home page. kia.ni therefore shows exactly what
+  kiani.vc shows. It is not attached to the `dk` portfolio project.
 
 - These instructions assume kia.ni should show the portfolio site in this
   repo. If kia.ni should instead open the kiani.vc curriculum platform, skip
