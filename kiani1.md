@@ -18,22 +18,23 @@ No code changes are needed in the repo. Everything happens in two dashboards.
 
 ## Step 2: Point DNS at Vercel from 101domain
 
-Pick one option. Option A is simpler and recommended.
+Keep 101domain's own nameservers (ns1/ns2.101domain.com) and edit the DNS
+records. In 101domain, open kia.ni, go to DNS Records, and make the zone look
+like this, nothing else:
 
-### Option A: Use Vercel's nameservers
+    Name     TTL      Type   Value
+    kia.ni   6 hours  A      76.76.21.21
+    www      6 hours  A      76.76.21.21
 
-In 101domain, open kia.ni, find Nameservers, and replace them with:
+Delete the default parking and privateemail records (the 52.60.87.163 A
+records, both MX records, the SPF TXT, and the default._domainkey DKIM TXT).
 
-    ns1.vercel-dns.com
-    ns2.vercel-dns.com
-
-### Option B: Keep 101domain's DNS and add records
-
-In 101domain's DNS manager for kia.ni, add:
-
-    Type   Host   Value
-    A      @      76.76.21.21
-    CNAME  www    cname.vercel-dns.com
+Why not Vercel's nameservers: the .ni registry runs a zone check before it
+will delegate to new nameservers, and it refuses any nameserver that is not
+already serving an SOA record for the domain. Vercel's nameservers do not
+serve the zone until after delegation, so the change fails with
+"Zone Check Failed, No SOA Record Returned". The A record route avoids the
+check entirely. This was done on 13 Oct 2026 and propagated the same day.
 
 ## Step 3: Wait, then verify
 
@@ -45,9 +46,12 @@ In 101domain's DNS manager for kia.ni, add:
 
 ## Things to know
 
-- .ni is Nicaragua's country domain. Its registry is slower than .com.
-  Nameserver changes can take 24 to 48 hours to propagate. Don't panic if
-  Vercel still shows an error after an hour.
+- .ni is Nicaragua's country domain. Registration itself took four days to
+  be approved by the registry (submitted 9 Oct, active 13 Oct 2026).
+
+- kia.ni was attached to the Vercel project `dk1`, which deploys the
+  kiani.vc curriculum site from its main branch. It is not attached to the
+  `dk` portfolio project. Move it between projects in Vercel if that changes.
 
 - These instructions assume kia.ni should show the portfolio site in this
   repo. If kia.ni should instead open the kiani.vc curriculum platform, skip
